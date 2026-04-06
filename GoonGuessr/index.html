@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Goonguessr</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+
+    .screen {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      width: 400px;
+      display: none;
+      position: relative;
+    }
+
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      transition: transform 0.1s, box-shadow 0.3s;
+    }
+
+    button:hover { transform: scale(1.05); }
+
+    .active {
+      box-shadow: 0 0 15px #ff0, 0 0 30px #ff0 inset;
+    }
+
+    #nextBtn { font-size: 22px; padding: 20px 35px; background-color: #4CAF50; color: white; }
+    #playBtn { font-size: 18px; padding: 15px 25px; background-color: #2196F3; color: white; }
+    #returnHomeBtn { position: absolute; top: 10px; left: 10px; background-color: #f44336; color: white; padding: 10px 15px; font-size: 14px; }
+
+    select, input[type="range"] { font-size: 16px; margin: 10px 0; width: 100%; }
+    #sliderValue { font-weight: bold; margin-left: 10px; }
+    h1, h2 { margin-bottom: 20px; }
+    p { font-size: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- HOME SCREEN -->
+<div id="homeScreen" class="screen" style="display:block;">
+  <h1>Goonguessr</h1>
+  <p>Choose snippet length:</p>
+  <button id="nmpzBtn" onclick="setSnippetLength(1.0, this)">NMPZ</button>
+  <button id="noMoveBtn" onclick="setSnippetLength(1.5, this)">No Move</button>
+  <br><br>
+  <button id="startBtn" onclick="startGame()">Play Game</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="gameScreen" class="screen">
+  <button id="returnHomeBtn" onclick="returnHome()">Home</button>
+  <h2>Round <span id="roundNum">1</span> / 5</h2>
+  <button id="playBtn" onclick="playSnippet()">Play Audio</button>
+  <br><br>
+
+  <label>Select audio file:</label>
+  <select id="guessFile">
+    <option value="0">1</option>
+    <option value="1">2</option>
+    <option value="2">3</option>
+    <option value="3">4</option>
+    <option value="4">5</option>
+    <option value="5">6</option>
+    <option value="6">7</option>
+    <option value="7">8</option>
+    <option value="8">9</option>
+    <option value="9">10</option>
+    <option value="10">11</option>
+  </select>
+  <br><br>
+
+  <label>Guess:</label>
+  <input type="range" id="timeSlider" min="0" max="100" value="0" step="0.1">
+  <span id="sliderValue">0</span> seconds
+  <br><br>
+
+  <button id="submitBtn" onclick="checkAnswer()" style="display:none;">Guess</button>
+  <button id="nextBtn" onclick="nextRound()" style="display:none;">Next Round</button>
+
+  <p id="result"></p>
+</div>
+
+<!-- FINAL SCREEN -->
+<div id="finalScreen" class="screen">
+  <h2>Game Over</h2>
+  <p>Score: <span id="totalScoreDisplay"></span> / 25 Gay</p>
+  <button onclick="restartGame()">Play Again</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
