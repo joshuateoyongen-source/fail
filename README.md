@@ -1,2 +1,2 @@
 # GoonGuessr
-GoonGuessr drops you at a random point in a gooner vid, and you'll have to guess where you are!
+GoonGuessr drops you at a random point in a gooner vid, and you'll have to guess where you are! Play NMPZ for the most authentic experience!
